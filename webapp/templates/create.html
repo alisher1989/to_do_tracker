@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Create task{% endblock %}
+{#{% block menu %}#}
+{#    <li><a href="{% url 'webapp:projects_view' %}">Projects</a></li>#}
+{#{% endblock %}#}
+{% block menu %}<a class="nav-link" href="{% url 'create_category' %}">Add Category</a>{% endblock %}
+{% block content %}
+    <h1>Create Task</h1>
+    <form method="POST" action="">
+        {% for field in form %}{% csrf_token %}
+            <p><label for="{{ field.id_for_label }}">{{ field.label }}</label></p>
+            <p>{{ field }}</p>
+            {% for error in field.errors %}
+                <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+        <p style="margin-top: 15px"><label for="category">Category</label></p>
+        <p>{% if category_count.count == 0 %}
+            <a href="{% url 'create_category' %}"><p>Add category</p></a>
+        {% else %} <p><select name="category" id="category" style="width: 200px; height: 30px">
+            <p><a href="">Add category</a></p>
+            {% for i in category_count %}
+                <option value="{{ i.id }}">{{ i }}</option>
+            {% endfor %}
+            </select></p>
+            </p>
+        {% endif %}
+        {% if task.count == 0 %}
+            <p>There is no tasks</p>
+        {% else %}
+        <p style="margin-top: 15px"><label for="task_parent">Task parent</label></p>
+        <p><select name="task_parent" id="task_parent" style="width: 200px; height: 30px">
+            {% for i in task %}
+                <option value="{{ i.id }}">{{ i }}</option>
+            {% endfor %}
+        </select></p>
+        {% endif %}
+        <p><input type="submit" value="Submit" style="margin-top: 15px"></p>
+
+    </form>
+{% endblock %}
