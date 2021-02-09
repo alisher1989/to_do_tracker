@@ -6,7 +6,7 @@
                 <p class="card-text"><b>Title: </b>{{ task.title }}</p>
                 <p class="card-text"><b>Category: </b>{{ task.category|default_if_none:'Nothing' }}</p>
                 <p class="card-text"><b>Created at: </b>{{ task.created }}</p>
-                <a href="{% url 'delete' task.pk %}" class="btn btn-danger">Delete</a>
+                <a href="{% url 'delete' task.pk %}" class="btn btn-danger">Complete</a>
             </div>
         </div>
         <h3 style="margin-top: 30px">Под задачи</h3>
