@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Create category{% endblock %}
+
+{% block content %}
+    <h1>Create Task</h1>
+    <form method="POST" action="">
+        {% for field in form %}{% csrf_token %}
+            <p><label for="{{ field.id_for_label }}">{{ field.label }}</label></p>
+            <p>{{ field }}</p>
+            {% for error in field.errors %}
+                <p class="form-error">{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+    <p><input type="submit" value="Submit" style="margin-top: 15px"></p>
+
+    </form>
+{% endblock %}

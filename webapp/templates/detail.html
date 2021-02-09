@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Detail of task{% endblock %}
+{% block content %}
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text"><b>Title: </b>{{ task.title }}</p>
+                <p class="card-text"><b>Category: </b>{{ task.category }}</p>
+                <p class="card-text"><b>Created at: </b>{{ task.created }}</p>
+                <a href="{% url 'delete' task.pk %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+        <h3 style="margin-top: 30px">Под задачи</h3>
+    <div>
+    {% for i in parent_tasks %}
+        <h4><a href="{% url 'task_detail' i.pk %}" style="text-decoration: None"><div>{{ i.title }}</div></a></h4>
+    {% empty %}
+        <h4>У этой задачи нет подзадач!</h4>
+    {% endfor %}
+    </div>
+{% endblock %}
