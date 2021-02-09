@@ -12,9 +12,6 @@ class ToDoListView(LoginRequiredMixin, ListView):
     template_name = 'index.html'
     context_object_name = 'tasks'
     model = Task
-    # ordering = ['-created_at']
-    # paginate_by = 4
-    # paginate_orphans = 1
 
     def get_queryset(self):
         queryset = super().get_queryset()
