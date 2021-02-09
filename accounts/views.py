@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
 
@@ -33,6 +34,8 @@ def login_view(request, *args, **kwargs):
             context['has_error'] = True
             context['next'] = next_url
             context['username'] = username
+            messages.error(request, 'Invalid login or password ! Please try again!')
+            return redirect('login')
     else:
         context = {'next': request.GET.get('next'), 'form': UserCreationForm}
     return render(request, 'registration/login.html', context=context)
